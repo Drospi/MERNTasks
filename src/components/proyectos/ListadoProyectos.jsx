@@ -1,15 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Proyecto from './Proyecto'
+import proyectoContext from '../../context/proyectos/proyectoContext'
 const ListadoProyectos = () => {
-    const proyectos = [
-        {nombre: 'Juan'},
-        {nombre: 'disparcir'},
-        {nombre:'Tareas del hogat'}
-    ]
+  const proyectosContext = useContext(proyectoContext)
+  const {proyectos} = proyectosContext;
+
+  if(proyectos.length === 0) return <p className='text-gray-500 cursor-text'>No hay proyectos, comienza creando uno...</p>
   return (
     <ul>
-        {proyectos.map((proyecto,key)=>{
-            return <Proyecto key={key} proyecto={proyecto}></Proyecto>
+        {proyectos.map((proyecto)=>{
+            return <Proyecto key={proyecto.id} proyecto={proyecto}></Proyecto>
         })}
     </ul>
   )
